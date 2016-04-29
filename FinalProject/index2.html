@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+	<script language="javascript" type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" ref="app.css">
+    
+    <style>
+
+div {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+.labelClass:hover {
+    color: hotpink;
+}
+label:link {
+    color: red;
+}
+       
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    padding: 5px;
+    border: 1px solid black;
+    text-align: left;
+    //border-bottom: 1px solid #ddd;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+tr:hover {background-color: #f5f5f5}
+        
+        
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:800px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+
+section {
+    width:1000;
+    float:left;
+    padding:10px; 
+}
+
+</style>
+    
+    
+	<title>Halo Viz Temp Title</title>
+</head>
+<body>
+
+<nav id="myNav">
+   <b> Match IDs </b> <br>
+    ....loading <br>
+</nav>
+    
+<section>    
+<div id="canvas-container1" style="border:1px solid black">
+<script>
+//myCanvas1 = new p5(sketchCanvas,"canvas-container1");    
+</script>    
+</div>    
+</section>   
+
+<section height:400px; width:400px;float:right>
+    <label style="color:red"><b> Red Team </b></label>
+
+    <table id = "playerDetailsRedTeam">
+      <!--
+        <tr>
+            <th>Gamer Tag</th>
+            <th>Total Kills</th>
+            <th>Total Deaths</th>
+            <th>Total Headshots</th>
+            <th>Total Assists</th>
+        </tr>
+        <tr>
+            <td> item1 </td>
+            <td> item2 </td>
+        </tr>
+       -->
+    </table>
+    <br> <label style="color:blue"><b> Blue Team </b></label>
+    
+    <table id = "playerDetailsBlueTeam">
+     <!--
+        <tr>
+            <th>Gamer Tag</th>
+            <th>Total Kills</th>
+            <th>Total Deaths</th>
+            <th>Total Headshots</th>
+            <th>Total Assists</th>
+        </tr>
+        <tr>
+            <td> item1 </td>
+            <td> item2 </td>
+        </tr>
+      -->
+    </table>
+</section>
+
+<!--
+<section> 
+<div id="canvas-container2" style="border:1px solid black">
+<script>
+var myCanvas2 = new p5(sketchCanvas,"canvas-container2");    
+</script> 
+</div>      
+</section>
+
+<section float:right>
+    <table>
+        <tr>
+            <td> item1 </td>
+            <td> item2 </td>
+        </tr>
+    </table>
+</section>
+-->
+    
+</body>
+</html>
