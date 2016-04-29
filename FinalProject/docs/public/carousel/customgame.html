@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script language="javascript" type="text/javascript" src="../../../libraries/p5.js"></script>
-      <script language="javascript" type="text/javascript" src="../../../main.js"> </script>
-      <script language="javascript" type="text/javascript" src="../../../visualization.js"> </script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,16 +9,7 @@
     <meta name="author" content="">
     <!--<link rel="icon" href="../../favicon.ico">-->
 
-    <style>
-    table, th, td {
-    padding: 50px;
-    //border: 1px solid black;
-    text-align: left;
-    //border-bottom: 1px solid #ddd;
-    }
-    </style>
-
-    <title>Search</title>
+    <title>Custom Game</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -68,7 +55,9 @@
                 <li class="dropdown active">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stats <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="search.html">Search</a></li>
+                    <li><a href="teamarena.html">Team Arena</a></li>
+                    <li><a href="warzone.html">Warzone</a></li>
+                    <li><a href="customgame.html">Custom Game</a></li>
                     <li><a href="history.html">History</a></li>
                     <!--<li><a href="#">Something else here</a></li>
                     <li role="separator" class="divider"></li>
@@ -90,10 +79,10 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="http://www.readyuplive.com/wp-content/gallery/halo-5-guardians-assets/H5-Guardians-Blue-Team-Zealotry.jpg" alt="First slide">
+          <img class="first-slide" src="http://i.imgur.com/0HWZF6a.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <!--<h1>The Rig</h1>-->
+              <h1>Custom Game in the making</h1>
               <!--<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>-->
               <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>-->
             </div>
@@ -110,83 +99,6 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4"></div>
       </div>
-
-      <div> </div>
-
-        <!--<img src="Warzone.png" alt="Mountain View" style="width:304px;height:228px;"> -->
-     <!-- <nav id="myNav"> -->
-
-      
-        <div>
-          <center>
-             <h2> Recent Matches </h2> <br>
-        <table id="myNav" style = "padding:10px" cellspacing="20" cellpadding="40">
-          <!--
-          <tr>
-            <td>
-              Match
-              <img src="../../../Empire.jpg" alt="Match 0" style="width:100px;height:100px;border:0" onclick="myfunc()">
-             
-            </td>
-            <td>
-              Match
-              <img src="../../../Empire.jpg" alt="Match 0" style="width:100px;height:100px;border:0">
-              
-            </td>
-          </tr>
-        -->
-        </table>
-        <center>
-        </div>
-    <script> function myfunc() {console.log("image clicked");} </script>
-        
-
-    <!-- </nav>  -->
-        
-    <section>    
-    <div id="canvas-container1" style="border:1px solid black">
-    <script>
-    //myCanvas1 = new p5(sketchCanvas,"canvas-container1");    
-    </script>    
-    </div>    
-    </section>   
-
-    <section height:400px; width:400px;float:right>
-        <label style="color:red"><b> Red Team </b></label>
-
-        <table id = "playerDetailsRedTeam">
-          <!--
-            <tr>
-                <th>Gamer Tag</th>
-                <th>Total Kills</th>
-                <th>Total Deaths</th>
-                <th>Total Headshots</th>
-                <th>Total Assists</th>
-            </tr>
-            <tr>
-                <td> item1 </td>
-                <td> item2 </td>
-            </tr>
-           -->
-        </table>
-        <br> <label style="color:blue"><b> Blue Team </b></label>
-        
-        <table id = "playerDetailsBlueTeam">
-         <!--
-            <tr>
-                <th>Gamer Tag</th>
-                <th>Total Kills</th>
-                <th>Total Deaths</th>
-                <th>Total Headshots</th>
-                <th>Total Assists</th>
-            </tr>
-            <tr>
-                <td> item1 </td>
-                <td> item2 </td>
-            </tr>
-          -->
-        </table>
-    </section>
 
 
     <!-- FOOTER -->
@@ -208,7 +120,6 @@
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
 
 </body>
 </html>
