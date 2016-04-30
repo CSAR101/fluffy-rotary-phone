@@ -4,7 +4,7 @@ var redTeam = [];
 var drawFlag = false; 
 var enableDraw = false;
 
-var username = 'raptorship';
+var username;
 
 function initSetup() {
     loadData1(); 
@@ -24,12 +24,19 @@ var end2;
 var end1Stop;
 var end2Stop;
 
+var matchId;
+
 function initRunAnimate(id) {
+    matchId = id;
     sortPlayerStats(id);
+    //drawBarchart(); 
+    clearBarchart(); 
     end1 = PI; end2 = 0;
     end1Stop = TWO_PI; end2Stop = PI;
     enableDraw = true;
     drawFlag = false;
+    //if (id==1)
+    //  {clear();return;}
     clear();
     //image(empireImg, 0, 0, empireImg.width = 1200, empireImg.height/2.7);
     //drawVisualizationAnimate();
@@ -65,6 +72,52 @@ function drawVisualizationAnimate() {
         blueTeamPlotAssists(); 
         blueTeamPlotHeadshots();
 
+        var name = allData[matchId].gameVariantName;
+        var description1 = allData[matchId].gameDescription;
+        var description2 = description1.slice(25, description1.length);
+        description1 = description1.slice(0, 25);
+
+        textSize(14);
+        text(name, 0, 25);
+        textSize(10);
+        text(description1, 0, 50);
+        text(description2, 0, 60);
+
+        stroke(0);
+        fill(128, 128, 128);
+        rect(0, 290, 10, 10);
+        stroke(0);
+        fill(255);
+        textSize(8);
+        text(" KILLS", 10, 300);
+
+        stroke(0);
+        fill(77, 77, 77);
+        rect(0, 305, 10, 10);
+        stroke(0);
+        fill(255);
+        textSize(8);
+        text(" DEATHS", 10, 315);
+
+        stroke(0);
+        fill(51, 51, 51);
+        rect(0, 320, 10, 10);
+        stroke(0);
+        fill(255);
+        textSize(8);
+        text(" ASSISTS", 10, 330);
+
+        stroke(0);
+        fill(26, 26, 26);
+        rect(0, 335, 10, 10);
+        stroke(0);
+        fill(255);
+        textSize(8);
+        text(" HEADSHOTS", 10, 345);
+
+
+        //showPlayerDetails(matchId); 
+
         //noLoop(); 
     }
 }
@@ -72,13 +125,8 @@ function drawVisualizationAnimate() {
 
 function drawVisualization() {
 //setup arcs and basic template for VIZ
-    strokeWeight(6);
-    stroke(255, 0, 0);
-    line(80, 195, 600, 195);
-    stroke(0, 0, 255);
-    line(80, 205, 600, 205);
     strokeWeight(5);
-    stroke(0, 0, 0);
+    stroke(105,105,105);
     noFill(); 
     
     end1 += .05;
@@ -90,16 +138,30 @@ function drawVisualization() {
         console.log("DrawFlag: true");
     }
 
+    stroke(128, 128, 128);
     arc(340, 195, 450, 350, PI, end1);
+    stroke(77, 77, 77);
     arc(340, 195, 390, 290, PI, end1);
+    stroke(51, 51, 51);
     arc(340, 195, 330, 230, PI, end1);
+    stroke(26, 26, 26);
     arc(340, 195, 270, 170, PI, end1); 
 
-    stroke(0, 0, 0);
+    stroke(128, 128, 128);
     arc(340, 205, 450, 350, 0, end2);
+    stroke(77, 77, 77);
     arc(340, 205, 390, 290, 0, end2);
+    stroke(51, 51, 51);
     arc(340, 205, 330, 230, 0, end2);
+    stroke(26, 26, 26);
     arc(340, 205, 270, 170, 0, end2);
+
+    strokeWeight(4);
+    stroke(255, 0, 0);
+    line(80, 195, 600, 195);
+    stroke(0, 0, 255);
+    line(80, 205, 600, 205);
+
 }
 
 
@@ -107,7 +169,8 @@ function sortPlayerStats(matchId) {
 
     //var teamID = allData[0].playerData[0].teamID; 
     //console.log("TEAM ID FOR PLAYER 0: " + teamID);
-
+    redTeam = [];
+    blueTeam = [];
     var i = matchId;
     for (var x = 0; x < allData[i].playerData.length; x++) {
         var teamID = allData[i].playerData[x].teamID; 
@@ -144,8 +207,8 @@ function redTeamPlotKills() {
         stroke(255, 0, 0);
 
         if (redTeam[i].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -159,7 +222,7 @@ function redTeamPlotKills() {
             xValue += 20;
         }
 
-        text(i+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
+        //text(i+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
 
         console.log("RATIO: " + totalKillsRatio);
 
@@ -181,8 +244,8 @@ function redTeamPlotDeaths() {
         stroke(255, 0, 0);
 
         if (redTeam[x].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else   
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -196,7 +259,7 @@ function redTeamPlotDeaths() {
             xValue += 20;
         }
 
-        text(x+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
+        //text(x+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
 
         console.log("RATIO: " + totalDeathsRatio);
 
@@ -217,8 +280,8 @@ function redTeamPlotAssists() {
         stroke(255, 0, 0);
 
         if (redTeam[z].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else 
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -232,7 +295,7 @@ function redTeamPlotAssists() {
             xValue += 20;
         }
 
-        text(z+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
+        //text(z+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
 
         console.log("RATIO: " + totalAssistsRatio);
 
@@ -245,7 +308,7 @@ var headshots = [];
 
     for (var a = 0; a < redTeam.length; a++) {
         console.log("RED TEAM: " + redTeam[a].gamerTag);
-        var totalHeadshotsRatio = 1 - ((redTeam[a].totalHeadshots) / 15); 
+        var totalHeadshotsRatio = 1 - ((redTeam[a].totalHeadshots) / 25); 
         console.log("Ratio Headshots: " + totalHeadshotsRatio);
         var arcLength = totalHeadshotsRatio * (PI * 135);
         var theta = -(arcLength / 135);
@@ -255,8 +318,8 @@ var headshots = [];
         stroke(255, 0, 0);
 
         if (redTeam[a].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else 
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -270,7 +333,7 @@ var headshots = [];
             xValue += 20;
         }
 
-        text(a+1, xValue + 10, yValue);
+        //text(a+1, xValue + 10, yValue);
 
         console.log("RATIO: " + totalHeadshotsRatio);
 
@@ -292,8 +355,8 @@ function blueTeamPlotKills() {
         stroke(0, 0, 255);
 
         if (blueTeam[i].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else 
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -307,7 +370,7 @@ function blueTeamPlotKills() {
             xValue += 20;
         }
 
-        text(i+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
+        //text(i+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
 
         console.log("RATIO: " + totalKillsRatio);
 
@@ -329,8 +392,8 @@ function blueTeamPlotDeaths() {
         stroke(0, 0, 255);
 
         if (blueTeam[x].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else 
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -344,7 +407,7 @@ function blueTeamPlotDeaths() {
             xValue += 20;
         }
 
-        text(x+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
+        //text(x+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
 
         console.log("RATIO: " + totalDeathsRatio);
 
@@ -365,8 +428,8 @@ function blueTeamPlotAssists() {
         stroke(0, 0, 255);
 
         if (blueTeam[z].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else 
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -380,7 +443,7 @@ function blueTeamPlotAssists() {
             xValue += 20;
         }
 
-        text(z+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
+        //text(z+1 /*redTeam[i].gamerTag*/, xValue + 10, yValue);
 
         console.log("RATIO: " + totalAssistsRatio);
 
@@ -393,7 +456,7 @@ var headshots = [];
 
     for (var a = 0; a < blueTeam.length; a++) {
         console.log("RED TEAM: " + blueTeam[a].gamerTag);
-        var totalHeadshotsRatio = 1 - ((blueTeam[a].totalHeadshots) / 15); 
+        var totalHeadshotsRatio = 1 - ((blueTeam[a].totalHeadshots) / 25); 
         console.log("Ratio Headshots: " + totalHeadshotsRatio);
         var arcLength = totalHeadshotsRatio * (-PI * 135);
         var theta = -(arcLength / 135);
@@ -403,8 +466,8 @@ var headshots = [];
         stroke(0, 0, 255);
 
         if (blueTeam[a].gamerTag == username) {ellipse(xValue, yValue, 15, 15);}
-
-        ellipse(xValue, yValue, 10, 10);
+        else 
+            ellipse(xValue, yValue, 10, 10);
         textSize(12);
         noFill();
         strokeWeight(1); 
@@ -418,7 +481,7 @@ var headshots = [];
             xValue += 20;
         }
 
-        text(a+1, xValue + 10, yValue);
+        //text(a+1, xValue + 10, yValue);
 
         console.log("RATIO: " + totalHeadshotsRatio);
 

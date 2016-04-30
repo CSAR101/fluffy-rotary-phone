@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <script language="javascript" type="text/javascript" src="../../../libraries/p5.js"></script>
+    <script type="text/javascript" src="../../../libraries/d3.js"></script>
+
       <script language="javascript" type="text/javascript" src="../../../main.js"> </script>
       <script language="javascript" type="text/javascript" src="../../../visualization.js"> </script>
+      <script language="javascript" type="text/javascript" src="../../../d3-barchart.js"> </script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,10 +17,22 @@
     <!--<link rel="icon" href="../../favicon.ico">-->
 
     <style>
-    table, th, td {
+    .chart div {
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+    }
+    table, th{
     padding: 50px;
     //border: 1px solid black;
     text-align: left;
+    //border-bottom: 1px solid #ddd;
+    }
+    tr, td {
+    padding: 50px;
+    //border: 1px solid black;
+    text-align: center;
     //border-bottom: 1px solid #ddd;
     }
     </style>
@@ -58,7 +73,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">Halo 5 Portal</a>
+              <a class="navbar-brand" href="index.html">Data Viz Web</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
@@ -118,6 +133,10 @@
         <!--<img src="Warzone.png" alt="Mountain View" style="width:304px;height:228px;"> -->
      <!-- <nav id="myNav"> -->
 
+        <div> 
+          <input type="text" id="searchName" value="input player name">
+          <button onclick="myfunc()"> Submit </button>
+        </div>
       
         <div>
           <center>
@@ -140,56 +159,34 @@
         </table>
         <center>
         </div>
-    <script> function myfunc() {console.log("image clicked");} </script>
+    <script> function myfunc() {console.log(document.getElementById("searchName").value);
+              loadDataFromHTML(document.getElementById("searchName").value);} </script>
         
 
     <!-- </nav>  -->
         
     <section>    
-    <div id="canvas-container1" style="border:1px solid black">
-    <script>
-    //myCanvas1 = new p5(sketchCanvas,"canvas-container1");    
-    </script>    
+    <div id="canvas-container1">  
     </div>    
-    </section>   
-
-    <section height:400px; width:400px;float:right>
+    </section>
+    <label style="color:red" onclick="drawBarchart()"><b> Team Stats </b></label>
+    <div class="chart">
+       <!-- <script> drawBarchart();</script> -->
+    </div>  
+<!--
+    <section>
         <label style="color:red"><b> Red Team </b></label>
 
-        <table id = "playerDetailsRedTeam">
-          <!--
-            <tr>
-                <th>Gamer Tag</th>
-                <th>Total Kills</th>
-                <th>Total Deaths</th>
-                <th>Total Headshots</th>
-                <th>Total Assists</th>
-            </tr>
-            <tr>
-                <td> item1 </td>
-                <td> item2 </td>
-            </tr>
-           -->
+        <table id = "playerDetailsRedTeam" cellspacing="20" cellpadding="40">
+         
         </table>
         <br> <label style="color:blue"><b> Blue Team </b></label>
         
-        <table id = "playerDetailsBlueTeam">
-         <!--
-            <tr>
-                <th>Gamer Tag</th>
-                <th>Total Kills</th>
-                <th>Total Deaths</th>
-                <th>Total Headshots</th>
-                <th>Total Assists</th>
-            </tr>
-            <tr>
-                <td> item1 </td>
-                <td> item2 </td>
-            </tr>
-          -->
+        <table id = "playerDetailsBlueTeam" cellspacing="20" cellpadding="40">
+        
         </table>
     </section>
-
+-->
 
     <!-- FOOTER -->
       <footer>
