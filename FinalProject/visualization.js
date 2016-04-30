@@ -29,6 +29,8 @@ var matchId;
 function initRunAnimate(id) {
     matchId = id;
     sortPlayerStats(id);
+    //drawBarchart(); 
+    clearBarchart(); 
     end1 = PI; end2 = 0;
     end1Stop = TWO_PI; end2Stop = PI;
     enableDraw = true;
@@ -114,7 +116,7 @@ function drawVisualizationAnimate() {
         text(" HEADSHOTS", 10, 345);
 
 
-        showPlayerDetails(matchId); 
+        //showPlayerDetails(matchId); 
 
         //noLoop(); 
     }
