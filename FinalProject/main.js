@@ -1,160 +1,29 @@
 var allData = [];
 var loadDataDone = false;
+var myCanvas = null; 
 
 function setup() {
-    var myCanvas = createCanvas(1000,400);
+    myCanvas = createCanvas(1000,400);
     myCanvas.parent("canvas-container1");
     console.log("setup entered");
     noLoop();
-    loadData();
+    //loadData();
     //frameRate(10);
     initSetup();
 }
 
-function setCanvas(){
-    myCanvas = createCanvas(1000,400);
-    myCanvas.parent("canvas-container1");
-    setupNavMenu();
-}
-
-/*function draw() {
-    if (!loadDataDone) 
-        return;
-    //ellipse(50, 50, 80, 80);
-    //pausecomp(60000);
-    clear();
-    drawVisualizationAnimate();
-    //if (xCenter == xCenterStop) {noLoop();return;}
-}*/
-
-/*var xCenter = 0;
-var xCenterStop = 505;
-var xCenterLine = 0;
-var xCenterLineStop = 1000;
-
-function drawVisualizationAnimate(matchId) {
-    //img = loadImage("fathom.jpg");
-    //image(img, 0, 0);
-    strokeWeight(8);
-    stroke(255, 0, 0);
-    line(0, 200, xCenterLine, 200);
-    stroke(0, 0, 255);
-    line(0, 210, xCenterLine, 210);
-    
-    strokeWeight(5);
-    stroke(0, 0, 0);
-    arc(xCenter, 190, 360, 360, PI, TWO_PI);
-    arc(xCenter, 190, 260, 260, PI, TWO_PI);
-    arc(xCenter, 190, 160, 160, PI, TWO_PI);
-    arc(xCenter, 190, 60, 60, PI, TWO_PI);
-    //
-    stroke(0, 0, 0);
-    arc(xCenter, 220, 360, 360, 0, PI);
-    arc(xCenter, 220, 260, 260, 0, PI);
-    arc(xCenter, 220, 160, 160, 0, PI);
-    arc(xCenter, 220, 60, 60, 0, PI);
-    
-
-    if (xCenter == xCenterStop && xCenterLine == xCenterLineStop) {noLoop();return;} 
-    
-    xCenter += 50;
-    if (xCenter >= xCenterStop) 
-       xCenter = xCenterStop;
-    
-    xCenterLine += 50;
-     if (xCenterLine >= xCenterLineStop) 
-       xCenterLine = xCenterLineStop;*/
-    
-    
-/*
-    var pData = allData[matchId].playerData;
-    for (i = 0; i < pData.length; i++) {
-        if (pData[i].teamID == 0) {
-            var totalKillsRatio = 1 - (pData[i].totalKills / 50); 
-
-            var arcLength = totalKillsRatio * (PI * 180);
-            var theta = -(arcLength / 180);
-            var xValue = (180 * (cos(theta))) + 505;
-            var yValue = (180 * (sin(theta))) + 190; 
-            ellipse(xValue, yValue, 10, 10);
-            console.log("ARC LENGTH: " + arcLength);
-            console.log("THETA: " + theta);
-        }
-        else {
-           // continue;
-           var totalKillsRatio = (pData[i].totalKills / 50); 
-
-            var arcLength = totalKillsRatio * (PI * 180);
-            var theta = (arcLength / 180);
-            var xValue = (180 * (cos(theta))) + 505;
-            var yValue = (180 * (sin(theta))) + 220; 
-            ellipse(xValue, yValue, 10, 10);
-            console.log("ARC LENGTH: " + arcLength);
-            console.log("THETA: " + theta); 
-        }
-    }
-    */
-    //noLoop();
-//}
 
 
-/*function drawVisualization(matchId) {
-    //img = loadImage("fathom.jpg");
-    //image(img, 0, 0);
-    strokeWeight(8);
-    stroke(255, 0, 0);
-    line(10, 200, 1000, 200);
-    stroke(0, 0, 255);
-    line(10, 210, 1000, 210);
-    
-    strokeWeight(5);
-    stroke(0, 0, 0);
-    arc(505, 190, 360, 360, PI, TWO_PI);
-    arc(505, 190, 260, 260, PI, TWO_PI);
-    arc(505, 190, 160, 160, PI, TWO_PI);
-    arc(505, 190, 60, 60, PI, TWO_PI);
-    //
-    stroke(0, 0, 0);
-    arc(505, 220, 360, 360, 0, PI);
-    arc(505, 220, 260, 260, 0, PI);
-    arc(505, 220, 160, 160, 0, PI);
-    arc(505, 220, 60, 60, 0, PI);
-
-    var pData = allData[matchId].playerData;
-    for (i = 0; i < pData.length; i++) {
-        if (pData[i].teamID == 0) {
-            var totalKillsRatio = 1 - (pData[i].totalKills / 50); 
-
-            var arcLength = totalKillsRatio * (PI * 180);
-            var theta = -(arcLength / 180);
-            var xValue = (180 * (cos(theta))) + 505;
-            var yValue = (180 * (sin(theta))) + 190; 
-            ellipse(xValue, yValue, 10, 10);
-            console.log("ARC LENGTH: " + arcLength);
-            console.log("THETA: " + theta);
-        }
-        else {
-           // continue;
-           var totalKillsRatio = (pData[i].totalKills / 50); 
-
-            var arcLength = totalKillsRatio * (PI * 180);
-            var theta = (arcLength / 180);
-            var xValue = (180 * (cos(theta))) + 505;
-            var yValue = (180 * (sin(theta))) + 220; 
-            ellipse(xValue, yValue, 10, 10);
-            console.log("ARC LENGTH: " + arcLength);
-            console.log("THETA: " + theta); 
-        }
-    }
-    //noLoop();
-}*/
-
-
-function loadData() {
+function loadDataFromHTML(name) {
 	
 	//getMatchInformation('raptorship'); 
-    
-	getMatchInformation('raptorship').then(function(response) {
+    if (myCanvas != null) {
+        myCanvas.clear(); 
+    }
+    loadDataDone = false; 
+    allData = []; 
+    username = name; 
+	getMatchInformation(name).then(function(response) {
         console.log("promise:Halo5esponse");
         Halo5MatchResponse(response);
     }).then(function(response) {return(getMapInformation(allData));})
@@ -343,7 +212,7 @@ function getTotalKills(matchNumber) {
 	
 	var n = allData.length;
     if (n > matchNumber) {
-        console.log("GetTotalKills: Mtachnumber is incorrect: " + matchNumber + "," + n);
+        console.log("GetTotalKills: Matchnumber is incorrect: " + matchNumber + "," + n);
     }
     
     var pData = allData[matchNumber-1];
@@ -383,9 +252,11 @@ function getMapImage(mapName) {
     else if (mapName == "The Rig")
         n = "Rig";
     else if (mapName == "Riptide")
-        n = "RipTide";
+        n = "Riptide";
     else if (mapName == "Torque")
         n = "Torque";
+    else if (mapName == "Eden")
+        n = "Eden";
     else if (mapName == "Tyrant")
         n = "Tyrant";
     else 
@@ -404,7 +275,7 @@ function setupNavMenu() {
         str += "<td>" + 
                 '<img src='
                 + '"../../../' + im + '.jpg"' 
-                + 'alt="Match 0" style="width:100px;height:100px;border:0"'
+                + 'alt="Match 0" style="width:300px;height:150px;border:0"'
                 + ' onclick="navClick(' + i + ')">'
                 + "</td>";
         }
@@ -422,6 +293,7 @@ function navClick(id) {
     initRunAnimate(id);
     //drawVisualizationAnimate();
     //sortPlayerStats(id);
+    //showPlayerDetails(id);
 }
 
 function showPlayerDetails(matchId) {
@@ -430,30 +302,30 @@ function showPlayerDetails(matchId) {
 
     var strRed = "<tr> \
             <th>Gamer Tag</th> \
-            <th>Total Kills</th> \
-            <th>Total Deaths</th> \
-            <th>Total Headshots</th> \
-            <th>Total Assists</th>\
+            <th>Kills &nbsp</th> \
+            <th>Deaths &nbsp</th> \
+            <th>Headshots &nbsp</th> \
+            <th>Assists &nbsp</th>\
             </tr>"
     var strBlue = "<tr> \
             <th>Gamer Tag</th> \
-            <th>Total Kills</th> \
-            <th>Total Deaths</th> \
-            <th>Total Headshots</th> \
-            <th>Total Assists</th>\
+            <th>Kills &nbsp</th> \
+            <th>Deaths &nbsp</th> \
+            <th>Headshots &nbsp</th> \
+            <th>Assists &nbsp</th>\
             </tr>"
 
     pData = allData[matchId].playerData;        
     for (var i = 0; i < pData.length; i++) {
         if (pData[i].teamID == 0) {
-            strRed += "<tr> <td>" + pData[i].gamerTag + "</td>" +
+            strRed += "<tr> <td style=\"text-align: left;\">" + pData[i].gamerTag + "</td>" +
                       "<td>" + pData[i].totalKills + "</td>" +
                       "<td>" + pData[i].totalDeaths + "</td>" +
                       "<td>" + pData[i].totalHeadshots + "</td>" +
                       "<td>" + pData[i].totalAssists + "</td> </tr>";
         }
         else {
-            strBlue += "<tr> <td>" + pData[i].gamerTag + "</td>" +
+            strBlue += "<tr> <td style=\"text-align: left;\">" + pData[i].gamerTag + "</td>" +
                       "<td>" + pData[i].totalKills + "</td>" +
                       "<td>" + pData[i].totalDeaths + "</td>>" +
                       "<td>" + pData[i].totalHeadshots + "</td>" +

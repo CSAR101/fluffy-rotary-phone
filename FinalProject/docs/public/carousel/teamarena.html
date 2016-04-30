@@ -14,10 +14,16 @@
     <!--<link rel="icon" href="../../favicon.ico">-->
 
     <style>
-    table, th, td {
+    table, th{
     padding: 50px;
     //border: 1px solid black;
     text-align: left;
+    //border-bottom: 1px solid #ddd;
+    }
+    tr, td {
+    padding: 50px;
+    //border: 1px solid black;
+    text-align: center;
     //border-bottom: 1px solid #ddd;
     }
     </style>
@@ -118,6 +124,10 @@
         <!--<img src="Warzone.png" alt="Mountain View" style="width:304px;height:228px;"> -->
      <!-- <nav id="myNav"> -->
 
+        <div> 
+          <input type="text" id="searchName" value="input player name">
+          <button onclick="myfunc()"> Submit </button>
+        </div>
       
         <div>
           <center>
@@ -140,23 +150,21 @@
         </table>
         <center>
         </div>
-    <script> function myfunc() {console.log("image clicked");} </script>
+    <script> function myfunc() {console.log(document.getElementById("searchName").value);
+              loadDataFromHTML(document.getElementById("searchName").value);} </script>
         
 
     <!-- </nav>  -->
         
     <section>    
-    <div id="canvas-container1" style="border:1px solid black">
-    <script>
-    //myCanvas1 = new p5(sketchCanvas,"canvas-container1");    
-    </script>    
+    <div id="canvas-container1">  
     </div>    
     </section>   
 
-    <section height:400px; width:400px;float:right>
+    <section>
         <label style="color:red"><b> Red Team </b></label>
 
-        <table id = "playerDetailsRedTeam">
+        <table id = "playerDetailsRedTeam" cellspacing="20" cellpadding="40">
           <!--
             <tr>
                 <th>Gamer Tag</th>
@@ -173,7 +181,7 @@
         </table>
         <br> <label style="color:blue"><b> Blue Team </b></label>
         
-        <table id = "playerDetailsBlueTeam">
+        <table id = "playerDetailsBlueTeam" cellspacing="20" cellpadding="40">
          <!--
             <tr>
                 <th>Gamer Tag</th>
