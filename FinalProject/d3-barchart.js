@@ -21,19 +21,19 @@ function drawBarchart() {
         .style("height", "20px")
         .style("width","10px")
         .style("opacity",0)
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "6px")
+        .style("font-family", "sans-serif")
+        .style("font-size", "6px")
         .style("background-color", function(d, i) {if(i <=3) return "red"; else return "blue";})
         //.text(function(d) {return d;})
         .on("mouseover",function() {d3.select(this).
                                         transition().
                                         duration(300).
                                         style("background-color","#FFD700");})
-        .on("mouseout",function() {d3.select(this).
+        .on("mouseout",function(d, i) {d3.select(this).
                                         transition().
                                         duration(300).
                                         style("background-color", 
-                                            function(d, i) {console.log(i); if(i <=3) return "red"; else return "blue";})})
+                                            function() {console.log(i); if(i <=3) return "red"; else return "blue";})})
         .transition()
             .delay(function(d,i) {return i * 100;})
             .duration(1000)
@@ -44,8 +44,6 @@ function drawBarchart() {
 
                 return statNames[i] + ": " + d;
             })
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "6px");
     
 }
 

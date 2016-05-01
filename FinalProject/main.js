@@ -66,7 +66,7 @@ function Halo5MatchResponse(response) {
 	var gameBaseVariantID = [];
 	var gameVariantID = [];
 
-	for (i = 0; i < results.length; i++) {
+	for (var i = 0; i < results.length; i++) {
 		//matchID[i] = results[i].Id.MatchId;
 		//mapID[i] = results[i].MapVariant.ResourceId; 
         var obj = {matchID: results[i].Id.MatchId,
@@ -87,7 +87,7 @@ function getGameVariantInformation(gameVariantID) {
 	console.log("game count: " + gameVariantID.length); 
     console.log("getGameVariantInformation enter");
     var p = [];
-    for (x = 0; x < gameVariantID.length; x++) {
+    for (var x = 0; x < gameVariantID.length; x++) {
         //console.log("Game Variant ID: " + gameVariantID[x].gameVariantID);
         var data = {gameVariantId: gameVariantID[x].gameVariantID};
         (p[x] = new Promise(function(resolve,reject) {
@@ -104,7 +104,7 @@ function gameVariantMetaResponse(response) {
     console.log(gameVariantData);
     
     var flag = false;
-    for (i = 0; i < allData.length; ++i) {
+    for (var i = 0; i < allData.length; ++i) {
         if (allData[i].gameVariantID == gameVariantData.id) {
             allData[i].gameVariantName = gameVariantData.name;
             allData[i].gameDescription = gameVariantData.description;
@@ -122,7 +122,7 @@ function gameVariantMetaResponse(response) {
 function getMapInformation(mapID) {
     console.log("getMapInformation enter");
     var p = [];
-	for (x = 0; x < mapID.length; x++) {
+	for (var x = 0; x < mapID.length; x++) {
 		console.log("mapID="+mapID[x].mapID);
 		var data = {mapId: mapID[x].mapID};
 		(p[x] = new Promise(function(resolve,reject) {
@@ -141,7 +141,7 @@ function mapMetaResponse(response) {
     console.log("mapMetaResponse response:");
     console.log(mData);
     var flag = false;
-    for (i = 0; i < allData.length; ++i) {
+    for (var i = 0; i < allData.length; ++i) {
         if (allData[i].mapID == mData.id) {
             allData[i].mapName = mData.name;
             allData[i].mapDescription = mData.description;
@@ -160,7 +160,7 @@ function getPostCarnageInformation(mdata) {
 	console.log("getPostCarnageInformation enter:");
     var p = [];
     var x;
-	for(x = 0; x < mdata.length; x++) {
+	for(var x = 0; x < mdata.length; x++) {
         var id = mdata[x].matchID;
 		var data = {matchId: id}; 
         
@@ -183,9 +183,9 @@ function postCarnageResponse(response) {
     console.log("gameVarId: " + gameVarId);
     var flag = false;
     var pData = [];
-    for (i = 0; i < allData.length; i++) {
+    for (var i = 0; i < allData.length; i++) {
         if (allData[i].gameVariantID == data.GameVariantId) {
-            for (x = 0; x < data.PlayerStats.length; x++) {
+            for (var x = 0; x < data.PlayerStats.length; x++) {
                 pData.push({
                     gamerTag: data.PlayerStats[x].Player.Gamertag,
                     teamID: data.PlayerStats[x].TeamId,
@@ -217,7 +217,7 @@ function getTotalKills(matchNumber) {
     
     var pData = allData[matchNumber-1];
     
-	for (i = 0; i < pData.length; i++) {
+	for (var i = 0; i < pData.length; i++) {
 		if (pData[i].TeamId == 0) {/* blue team */
 			blueTeam.push(pData[i]);
 		}
@@ -227,22 +227,6 @@ function getTotalKills(matchNumber) {
 	}
 	return {Blue: blueTeam, Red: redTeam}
 }
-
-
-
-/*
-function setupNavMenu()
-{
-    var str = "<b> <u> Match IDs </u> </b> <br>";
-    var labelClass =  'class=\"labelClass\"';
-    
-    for (i = 0; i < allData.length; i++) {
-        //var id = allData[i].matchID;
-        str += '<label ' + labelClass + ' onclick=\'navClick("' + i + '")\'>' + "Match " + i + "</label> <br>";
-    }
-    document.getElementById("myNav").innerHTML = str;
-}
-*/
 
 function getMapImage(mapName) {
     if (mapName == "Empire")
@@ -268,7 +252,7 @@ function setupNavMenu() {
     var str = "<tr>";
     var th = "";
 
-    for (i = 0; i < allData.length; i++) {
+    for (var i = 0; i < allData.length; i++) {
         var im = getMapImage(allData[i].mapName);
 
         th += "<th>" + allData[i].mapName + "</th>";
