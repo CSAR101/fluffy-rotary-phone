@@ -26,6 +26,7 @@ var end2Stop;
 
 var matchId;
 
+//resets variables for drawing purposes
 function initRunAnimate(id) {
     matchId = id;
     sortPlayerStats(id);
@@ -52,7 +53,7 @@ function draw() {
     drawVisualizationAnimate();
 }
 
-
+//draws p5 viz
 function drawVisualizationAnimate() {
     //if (end1 <= TWO_PI) {
     if(drawFlag == false) {
@@ -164,7 +165,7 @@ function drawVisualization() {
 
 }
 
-
+//sorts players by teamID
 function sortPlayerStats(matchId) {
 
     //var teamID = allData[0].playerData[0].teamID; 
