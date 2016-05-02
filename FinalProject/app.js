@@ -35,7 +35,7 @@ app.get('/Halo5Match', function (req, res) {
   console.log("playerGamertag="+ name);
   request({
      //url:'https://www.haloapi.com/stats/h5/servicerecords/arena?players=raptorship',
-     url: 'https://www.haloapi.com/stats/h5/players/' + name + '/matches?start=0&count=5',
+     url: 'https://www.haloapi.com/stats/h5/players/' + name + '/matches?start=0&count=2',
      headers: {
         'Ocp-Apim-Subscription-Key':'eddd9f2248194ff1955447374d2b0d91'
      },
@@ -105,7 +105,7 @@ app.get('/Halo5PostGameCarnageArena', function (req, res) {
 
   },
   function(error,r,body) {
-      console.log(body); res.setHeader('Content-Type','application/json'); res.send(body);
+      console.log("CarnageArena"); res.setHeader('Content-Type','application/json'); res.send(body);
   }); 
   //var responseText = '{name: Hello}';
   //res.send(JSON.stringify(body));

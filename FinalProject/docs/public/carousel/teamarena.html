@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script language="javascript" type="text/javascript" src="../../../libraries/p5.js"></script>
+    <script type="text/javascript" src="../../../libraries/d3.js"></script>
+
+      <script language="javascript" type="text/javascript" src="../../../main.js"> </script>
+      <script language="javascript" type="text/javascript" src="../../../visualization.js"> </script>
+      <script language="javascript" type="text/javascript" src="../../../d3-barchart.js"> </script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <!--<link rel="icon" href="../../favicon.ico">-->
 
-    <title>Search</title>
+    <style>
+    .chart div {
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+    }
+    table, th{
+    padding: 50px;
+    //border: 1px solid black;
+    text-align: left;
+    //border-bottom: 1px solid #ddd;
+    }
+    tr, td {
+    padding: 50px;
+    //border: 1px solid black;
+    text-align: center;
+    //border-bottom: 1px solid #ddd;
+    }
+    </style>
+
+    <title>Team Arena</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,23 +73,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">Data Viz Web</a>
+              <a class="navbar-brand" href="index.html">Halo 5 Viz</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <!--<li><a href="#contact">Contact</a></li>-->
-                <li class="dropdown">
+                <li class="dropdown active">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stats <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="search.html">Search</a></li>
+                    <li><a href="teamarena.html">Team Arena</a></li>
+                    <li><a href="warzone.html">Warzone</a></li>
+                    <li><a href="customgame.html">Custom Game</a></li>
                     <li><a href="history.html">History</a></li>
-                    <!--<li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>-->
                   </ul>
                 </li>
               </ul>
@@ -77,12 +102,9 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="http://www.readyuplive.com/wp-content/gallery/halo-5-guardians-assets/H5-Guardians-Blue-Team-Zealotry.jpg" alt="First slide">
+          <img class="first-slide" src="http://modern300.yolasite.com/resources/red_vs_blue___smyf_x_firestream___halo_4_desktop_by_solidtransient-d5fn6e1.jpg" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-              <!--<h1>The Rig</h1>-->
-              <!--<p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>-->
-              <!--<p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>-->
             </div>
           </div>
         </div>
@@ -98,10 +120,69 @@
         <div class="col-lg-4"></div>
       </div>
 
+      <div> </div>
+
+        <!--<img src="Warzone.png" alt="Mountain View" style="width:304px;height:228px;"> -->
+     <!-- <nav id="myNav"> -->
+
+        <div>
+          <input type="search" id="searchName" value="input player name">
+          <button onclick="myfunc()"> Submit </button>
+        </div>
+        <div>
+          <center>
+             <h2> Recent Matches </h2> <br>
+        <table id="myNav" style = "padding:10px" cellspacing="20" cellpadding="40">
+          <!--
+          <tr>
+            <td>
+              Match
+              <img src="../../../Empire.jpg" alt="Match 0" style="width:100px;height:100px;border:0" onclick="myfunc()">
+             
+            </td>
+            <td>
+              Match
+              <img src="../../../Empire.jpg" alt="Match 0" style="width:100px;height:100px;border:0">
+              
+            </td>
+          </tr>
+        -->
+        </table>
+        <center>
+        </div>
+    <script> function myfunc() {console.log(document.getElementById("searchName").value);
+              loadDataFromHTML(document.getElementById("searchName").value);} </script>
+        
+
+    <!-- </nav>  -->
+        
+    <section>    
+    <div id="canvas-container1">  
+    </div>    
+    </section>
+    <label style="color:white" onclick="drawBarchart()"><b> Team Stats</b> <i>(click for details)</i></label>
+    <div class="chart">
+       <!-- <script> drawBarchart();</script> -->
+    </div>  
+<!--
+    <section>
+        <label style="color:red"><b> Red Team </b></label>
+
+        <table id = "playerDetailsRedTeam" cellspacing="20" cellpadding="40">
+         
+        </table>
+        <br> <label style="color:blue"><b> Blue Team </b></label>
+        
+        <table id = "playerDetailsBlueTeam" cellspacing="20" cellpadding="40">
+        
+        </table>
+    </section>
+-->
+
     <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2016 Fluffly Rotary Phone, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+        <p>&copy; 2016 Fluffly Rotary Phone, Inc. &middot; <a href="https://www.google.com/policies/privacy/">Privacy</a> &middot; <a href="http://imgfave-herokuapp-com.global.ssl.fastly.net/image_cache/1331492578868439.png">Terms</a></p>
       </footer>
 
     </div><!-- /.container -->
@@ -117,6 +198,7 @@
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
 
 </body>
 </html>
