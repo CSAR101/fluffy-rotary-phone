@@ -1,3 +1,7 @@
+//Mihir Srivastava/Amit Rathore
+//FINAL PROJECT - HALO 5 Multiplayer visualization that shows correlations between multiple 
+//players and why one team wins over another
+
 var allData = [];
 var loadDataDone = false;
 var myCanvas = null; 
@@ -13,7 +17,7 @@ function setup() {
 }
 
 
-
+//promises for async callbacks
 function loadDataFromHTML(name) {
 	
 	//getMatchInformation('raptorship'); 
@@ -63,7 +67,7 @@ function Halo5MatchResponse(response) {
 	console.log(results);
 	var matchID = [];
 	var mapID = [];
-	var gameBaseVariantID = [];
+	//var gameBaseVariantID = [];
 	var gameVariantID = [];
 
 	for (var i = 0; i < results.length; i++) {
@@ -75,7 +79,6 @@ function Halo5MatchResponse(response) {
         allData.push(obj);
         //if (i == 1)
            // break;
-		//gameBaseVariantID[i] = results[i].GameBaseVariantId; //Arena
 		//gameVariantID[i] = results[i].GameVariant.ResourceId; //Slayer, CTF, etc...
 		//console.log("MatchID:" + matchID[i]);
         console.log("mapID:" + allData[i].mapID);
@@ -228,6 +231,7 @@ function getTotalKills(matchNumber) {
 	return {Blue: blueTeam, Red: redTeam}
 }
 
+//loads map images based on what is map name
 function getMapImage(mapName) {
     if (mapName == "Empire")
         n = "Empire";
